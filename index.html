@@ -4,10 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Comic‑Con 2025 | Comics, Cosplay & Chaos</title>
+
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Luckiest+Guy&display=swap" rel="stylesheet" />
+  <!-- Main stylesheet -->
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <!-- Site header & nav -->
   <header>
     <h1>Comic‑Con 2025</h1>
     <nav>
@@ -19,17 +23,31 @@
     </nav>
   </header>
 
-  <section class="hero">
-    <img src="banner.png" alt="Comic‑Con 2025 Banner" />
-    <p class="tagline">Comics, Cosplay & Chaos—unleashed March 14‑16, 2025!</p>
+  <!-- Hero section (no banner image) -->
+  <section class="hero"
+           style="background: linear-gradient(135deg, var(--blue) 0%, var(--red) 50%, var(--yellow) 100%);
+                  color: var(--light); padding: 4rem 1rem; text-align: center;">
+    <h2 style="font-family: 'Bangers', cursive; font-size: 3rem; margin-bottom: .5rem;">
+      Comics, Cosplay & Chaos
+    </h2>
+    <p style="font-size: 1.4rem; margin-bottom: 1.5rem;">
+      March 14‑16, 2025 • George R. Brown Convention Center, Houston TX
+    </p>
+    <a href="tickets.html"
+       style="background: var(--yellow); color: var(--dark); padding: .8rem 1.6rem;
+              border-radius: .6rem; text-decoration: none; font-size: 1.2rem;">
+       Get Your Pass
+    </a>
   </section>
 
+  <!-- Character highlight strip (unchanged) -->
   <section class="highlights">
     <img src="pikachu.png" alt="Pikachu" />
     <img src="batman.png"  alt="Batman"  />
     <img src="deadpool.png" alt="Deadpool" />
   </section>
 
+  <!-- Footer -->
   <footer>
     © 2025 Comic‑Con 2025 • Houston, TX
   </footer>
