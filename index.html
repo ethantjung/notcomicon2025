@@ -9,9 +9,72 @@
   <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Luckiest+Guy&display=swap" rel="stylesheet" />
   <!-- Main stylesheet -->
   <link rel="stylesheet" href="styles.css" />
+
+  <!-- Extra home‑page flair -->
+  <style>
+    /* Comic‑book dots background animation */
+    @keyframes popDots {
+      0%   { background-position: 0 0; }
+      100% { background-position: 400px 400px; }
+    }
+    #hero {
+      min-height: 70vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--light);
+      background:
+        radial-gradient(circle, rgba(0,0,0,0.25) 20%, transparent 21%) 0 0 / 10px 10px,
+        linear-gradient(135deg, var(--blue) 0%, var(--red) 50%, var(--yellow) 100%);
+      animation: popDots 12s linear infinite;
+    }
+    #hero h2 { font-size: 3.2rem; margin-bottom: .6rem; }
+    #hero .cta-btn {
+      background: var(--yellow);
+      color: var(--dark);
+      padding: .9rem 2rem;
+      border-radius: .6rem;
+      font-size: 1.25rem;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+    }
+    #hero .cta-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0,0,0,.3);
+    }
+    /* Countdown */
+    #countdown { font-size: 1.4rem; margin: 1rem 0 1.8rem; letter-spacing: 1px; }
+    /* Quick‑link cards */
+    .quick-links {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+      max-width: 1000px;
+      margin: 2.5rem auto;
+      padding: 0 1rem;
+    }
+    .quick-links a {
+      display: block;
+      padding: 2rem 1rem;
+      border-radius: 1rem;
+      text-align: center;
+      font-size: 1.4rem;
+      color: var(--light);
+      text-decoration: none;
+      font-family: 'Bangers', cursive;
+      transition: transform .2s;
+    }
+    .quick-links a:nth-child(1){ background: var(--blue); }
+    .quick-links a:nth-child(2){ background: var(--red); }
+    .quick-links a:nth-child(3){ background: var(--yellow); color: var(--dark); }
+    .quick-links a:hover{ transform: translateY(-4px) rotate(-1deg); }
+  </style>
 </head>
 <body>
-  <!-- Site header & nav -->
+  <!-- Header & navigation -->
   <header>
     <h1>Comic‑Con 2025</h1>
     <nav>
@@ -23,24 +86,22 @@
     </nav>
   </header>
 
-  <!-- Hero section (no banner image) -->
-  <section class="hero"
-           style="background: linear-gradient(135deg, var(--blue) 0%, var(--red) 50%, var(--yellow) 100%);
-                  color: var(--light); padding: 4rem 1rem; text-align: center;">
-    <h2 style="font-family: 'Bangers', cursive; font-size: 3rem; margin-bottom: .5rem;">
-      Comics, Cosplay & Chaos
-    </h2>
-    <p style="font-size: 1.4rem; margin-bottom: 1.5rem;">
-      March 14‑16, 2025 • George R. Brown Convention Center, Houston TX
-    </p>
-    <a href="tickets.html"
-       style="background: var(--yellow); color: var(--dark); padding: .8rem 1.6rem;
-              border-radius: .6rem; text-decoration: none; font-size: 1.2rem;">
-       Get Your Pass
-    </a>
+  <!-- Hero section -->
+  <section id="hero">
+    <h2>Comics, Cosplay & Chaos</h2>
+    <p>George R. Brown Convention Center • March 14‑16, 2025</p>
+    <div id="countdown"></div>
+    <a href="tickets.html" class="cta-btn">Get Your Pass</a>
   </section>
 
-  <!-- Character highlight strip (unchanged) -->
+  <!-- Quick navigation cards -->
+  <section class="quick-links">
+    <a href="schedule.html">See the Schedule</a>
+    <a href="tickets.html">Grab Tickets</a>
+    <a href="about.html">Event Details</a>
+  </section>
+
+  <!-- Character highlight strip (unchanged images) -->
   <section class="highlights">
     <img src="pikachu.png" alt="Pikachu" />
     <img src="batman.png"  alt="Batman"  />
@@ -51,5 +112,23 @@
   <footer>
     © 2025 Comic‑Con 2025 • Houston, TX
   </footer>
+
+  <!-- Countdown script -->
+  <script>
+    const out = document.getElementById('countdown');
+    const target = new Date('2025-03-14T09:00:00-05:00').getTime();
+    function updateCountdown(){
+      const now = Date.now();
+      const diff = target - now;
+      if(diff <= 0){ out.textContent = 'It’s showtime!'; return; }
+      const d = Math.floor(diff/86400000);
+      const h = Math.floor(diff%86400000/3600000);
+      const m = Math.floor(diff%3600000/60000);
+      const s = Math.floor(diff%60000/1000);
+      out.textContent = `${d}d ${h}h ${m}m ${s}s until doors open`;
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
 </body>
 </html>
