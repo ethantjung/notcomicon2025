@@ -71,6 +71,38 @@
     .quick-links a:nth-child(2){ background: var(--red); }
     .quick-links a:nth-child(3){ background: var(--yellow); color: var(--dark); }
     .quick-links a:hover{ transform: translateY(-4px) rotate(-1deg); }
+
+    /* --- New “card fan” gallery --- */
+    .showcase {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      padding: 4rem 1rem;
+      background: var(--light);
+    }
+    .card {
+      width: 220px;
+      border: 6px solid var(--dark);
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 8px 15px rgba(0,0,0,.3);
+      transition: transform .25s ease-out, box-shadow .25s ease-out;
+    }
+    .card img { width: 100%; display: block; }
+    .card:hover {
+      transform: scale(1.05) rotate(1deg);
+      box-shadow: 0 12px 25px rgba(0,0,0,.4);
+    }
+    .card-left  { transform: rotate(-6deg); }
+    .card-center{ transform: rotate(-2deg); }
+    .card-right { transform: rotate(6deg); }
+    /* Flatten angles on small screens */
+    @media (max-width: 700px){
+      .card, .card-left, .card-center, .card-right { transform: rotate(0deg); }
+    }
   </style>
 </head>
 <body>
@@ -101,11 +133,17 @@
     <a href="about.html">Event Details</a>
   </section>
 
-  <!-- Character highlight strip (unchanged images) -->
-  <section class="highlights">
-    <img src="pikachu.png" alt="Pikachu" />
-    <img src="batman.png"  alt="Batman"  />
-    <img src="deadpool.png" alt="Deadpool" />
+  <!-- New comic‑style image showcase -->
+  <section class="showcase">
+    <figure class="card card-left">
+      <img src="pikachu.png" alt="Pikachu">
+    </figure>
+    <figure class="card card-center">
+      <img src="batman.png" alt="Batman">
+    </figure>
+    <figure class="card card-right">
+      <img src="deadpool.png" alt="Deadpool">
+    </figure>
   </section>
 
   <!-- Footer -->
@@ -120,7 +158,7 @@
     function updateCountdown(){
       const now = Date.now();
       const diff = target - now;
-      if(diff <= 0){ out.textContent = 'It’s showtime!'; return; }
+      if(diff <= 0){ out.textContent = "It’s showtime!"; return; }
       const d = Math.floor(diff/86400000);
       const h = Math.floor(diff%86400000/3600000);
       const m = Math.floor(diff%3600000/60000);
